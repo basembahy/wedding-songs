@@ -1,13 +1,26 @@
 // Shazam API integration using RapidAPI (shazam.p.rapidapi.com)
 
 /**
+ * Helper to get a random RapidAPI key from the configured list
+ * @returns {string|null}
+ */
+function getRandomRapidApiKey() {
+    const keys = window.APP_CONFIG.RAPIDAPI_KEYS;
+    if (Array.isArray(keys) && keys.length > 0) {
+        const randomIndex = Math.floor(Math.random() * keys.length);
+        return keys[randomIndex];
+    }
+    return window.APP_CONFIG.RAPIDAPI_KEY || null;
+}
+
+/**
  * Fetch autocomplete suggestions as the user types
  * @param {string} term 
  */
 async function fetchAutocomplete(term) {
     if (!term || term.trim().length < 3) return [];
 
-    const key = window.APP_CONFIG.RAPIDAPI_KEY;
+    const key = getRandomRapidApiKey();
     const host = window.APP_CONFIG.RAPIDAPI_HOST;
 
     if (!key) {
@@ -54,7 +67,7 @@ async function fetchAutocomplete(term) {
 async function searchSongs(term, offset = 0, limit = 12) {
     if (!term || term.trim().length === 0) return [];
 
-    const key = window.APP_CONFIG.RAPIDAPI_KEY;
+    const key = getRandomRapidApiKey();
     const host = window.APP_CONFIG.RAPIDAPI_HOST;
 
     try {
