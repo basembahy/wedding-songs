@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basem & Amira's Wedding Playlist</title>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Supabase JS CDN Client Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Background Hearts Animation Container -->
+    <div id="background-hearts"></div>
+
+    <!-- Notification Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Sticky Header / Navbar -->
+        <header>
+            <div class="logo-container">
+                <span class="logo-text">Basem & Amira</span>
+                <i class="fas fa-heart logo-heart"></i>
+            </div>
+            
+            <nav id="navbar-links">
+                <a href="#search" id="btn-nav-search" class="nav-btn active">
+                    <i class="fas fa-search"></i> Search Songs
+                </a>
+                <a href="#playlist" id="btn-nav-playlist" class="nav-btn">
+                    <i class="fas fa-music"></i> Playlist
+                </a>
+            </nav>
+            
+            <!-- Dynamic User profile / logout button -->
+            <div id="header-user-container"></div>
+        </header>
+
+        <!-- MAIN PAGE SECTIONS -->
+        <main>
+            
+            <!-- Page 1: Welcome Name Entry Screen -->
+            <section id="page-welcome" class="page glass-card active">
+                <div class="welcome-title-wrapper">
+                    <div class="welcome-subtitle">Join us in celebrating</div>
+                    <h1 class="welcome-main-title">Basem & Amira's Wedding</h1>
+                    <p class="welcome-intro">We want our wedding day to be filled with music that everyone loves! Please enter your name to add your favorite songs to our playlist.</p>
+                </div>
+                
+                <form id="welcome-form">
+                    <div class="form-group">
+                        <label for="guest-name" class="form-label">Your Lovely Name</label>
+                        <input type="text" id="guest-name" class="form-input" placeholder="e.g. Mahmoud, Sarah..." required autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        Enter the Party <i class="fas fa-arrow-right"></i>
+                    </button>
+                </form>
+            </section>
+
+            <!-- Page 2: Search Songs Screen -->
+            <section id="page-search" class="page">
+                <!-- Search bar section -->
+                <div class="search-box-container">
+                    <form id="search-form">
+                        <div class="search-input-wrapper">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="song-search-input" class="search-input" placeholder="Search song name, artist..." autocomplete="off">
+                        </div>
+                        
+                        <!-- Autocomplete Suggestions List -->
+                        <div id="autocomplete-dropdown" class="autocomplete-dropdown"></div>
+                    </form>
+                </div>
+                
+                <!-- Search Results Container -->
+                <div id="search-results-container">
+                    <div class="empty-state glass-card">
+                        <div class="empty-state-icon"><i class="fas fa-music"></i></div>
+                        <h3 class="empty-state-title">Pick Your Wedding Song</h3>
+                        <p>Start typing the song name in the search bar above to see live suggestions!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Page 3: Wedding Playlist Screen -->
+            <section id="page-playlist" class="page glass-card">
+                <!-- Dynamic Playlist Header (Count and Download button) -->
+                <div id="playlist-header-container" class="playlist-header">
+                    <div class="playlist-info-title">Wedding Playlist</div>
+                    <div class="playlist-count">0 Songs</div>
+                </div>
+                
+                <!-- Paginated List Table -->
+                <div id="playlist-table-container"></div>
+                
+                <!-- Pagination Buttons Container -->
+                <div id="playlist-pagination-container"></div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Basem & Amira's Wedding. Built with <i class="fas fa-heart" style="color: var(--primary);"></i> for our friends.</p>
+        </footer>
+
+    </div>
+
+    <!-- Application Script Files -->
+    <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/shazam.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
